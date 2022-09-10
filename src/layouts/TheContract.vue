@@ -1,4 +1,4 @@
-<!-- <script setup>
+<script setup>
 import { ref } from "vue";
 import General from "../components/ContractGeneral.vue";
 import Networks from "../components/ContractDetails.vue";
@@ -13,9 +13,14 @@ let currentTab = ref("Networks");
   <main>
     <nav>
       <ul>
-        <li v-for="tab in tabs" :key="tab" @click="currentTab = tab">
+        <li
+          v-for="(tab, key) in tabs"
+          :key="tab"
+          @click="currentTab = key"
+          :class="{ activeTab: currentTab === key }"
+        >
           <div>
-            <p>{{ tab }}</p>
+            <p>{{ key }}</p>
           </div>
         </li>
       </ul>
@@ -24,46 +29,6 @@ let currentTab = ref("Networks");
     <section>
       <keep-alive>
         <component :is="tabs[currentTab]"></component>
-      </keep-alive>
-    </section>
-  </main>
-</template> -->
-
-<script>
-import General from "../components/ContractGeneral.vue";
-import Networks from "../components/ContractDetails.vue";
-
-export default {
-  components: { General, Networks },
-  data() {
-    return {
-      current: "General",
-      components: ["General", "Networks"],
-    };
-  },
-};
-</script>
-
-<template>
-  <main>
-    <nav>
-      <ul>
-        <li
-          v-for="comp in components"
-          :key="comp"
-          @click="current = comp"
-          :class="{ activeTab: current === comp }"
-        >
-          <div>
-            <p>{{ comp }}</p>
-          </div>
-        </li>
-      </ul>
-      <div></div>
-    </nav>
-    <section>
-      <keep-alive>
-        <component :is="current"></component>
       </keep-alive>
     </section>
   </main>
