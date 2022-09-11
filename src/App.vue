@@ -1,5 +1,6 @@
 <script setup>
 import TheContract from "./layouts/TheContract.vue";
+// import {  onMounted } from "vue";
 // import { useStore } from "vuex";
 // import { computed } from "vue";
 
@@ -7,6 +8,7 @@ import TheContract from "./layouts/TheContract.vue";
 // store.dispatch("getContract");
 // const contract = computed(() => store.getters.contract);
 // console.log(contract.value)
+
 </script>
 
 <template>
@@ -14,20 +16,17 @@ import TheContract from "./layouts/TheContract.vue";
 </template>
 
 <style>
-  @import url("https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;400;500;600;700&display=swap");
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Barlow', sans-serif;
-}
-#app {
+  font-family: "Barlow", sans-serif;
   font-size: 10px;
 }
 
 body {
-  background-color: #f7f8f9
-;
+  background-color: #f7f8f9;
 }
 </style>
