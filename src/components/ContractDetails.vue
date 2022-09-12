@@ -1,17 +1,41 @@
 <script setup>
 import { computed } from "vue";
-const networks = computed(() => {
-  return props.contract?.networks;
-});
+// import { useRoute } from "vue-router";
+import { useStore } from "vuex";
+const store = useStore();
 // eslint-disable-next-line
-const props = defineProps({
-  contract: { type: Object, default: () => ({ networks: {} }) },
-});
+// const props = defineProps({
+//   contract: { type: Object, default: () => ({ networks: {} }) },
+// });
+const network = computed(() => store.getters.currentNetwork);
+// import { computed } from "vue";
+// const networks = computed(() => {
+//   return props.contract?.networks;
+// });
+// const route = useRoute();
+// const logNetwork = (network) => {
+//   console.log(network);
+console.log(network.value);
+// }
+// console.log(route.params);
+// console.log(props.network)
+let currentNetwork = localStorage.getItem("currentNetwork");
+let specificNetwork = JSON.parse(currentNetwork)
+console.log(specificNetwork);
 </script>
 
 <template>
   <div>
-    <details v-for="network in networks" :key="network">
+    dddddddd
+    <p>{{specificNetwork.id}}</p>
+    <p v-for="node in specificNetwork.connectedNodes" :key="node">{{node.nodeId}}</p>
+    <!-- <ul class="networks-list">
+          <li v-for="item in currentNetwork" :key="item" @click="changeRoute(network)">
+            <p>{{ network.id }}</p>
+            <img src="@/assets/right.png" alt="arrow-icon" />
+          </li>
+        </ul> -->
+    <!-- <details v-for="network in networks" :key="network">
       <summary>
         {{ network.id }}
         <div>
@@ -31,10 +55,10 @@ const props = defineProps({
           </svg>
         </div>
       </summary>
-      <p v-for="node in network.connectedNodes" :key="node">
+      <p v-for="node in network.connectedNodes" :key="node" @click="logNetwork(network)">
         {{ node.nodeId }}
       </p>
-    </details>
+    </details> -->
   </div>
 </template>
 

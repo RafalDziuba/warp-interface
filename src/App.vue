@@ -1,5 +1,5 @@
 <script setup>
-import TheContract from "./layouts/TheContract.vue";
+// import TheContract from "./layouts/TheContract.vue";
 // import {  onMounted } from "vue";
 // import { useStore } from "vuex";
 // import { computed } from "vue";
@@ -12,7 +12,7 @@ import TheContract from "./layouts/TheContract.vue";
 </script>
 
 <template>
-  <TheContract></TheContract>
+  <router-view></router-view>
 </template>
 
 <style>

@@ -1,25 +1,20 @@
 <script setup>
-import { ref, computed } from "vue";
+import { computed } from "vue";
 import { useStore } from "vuex";
-import General from "../components/ContractGeneral.vue";
-import Networks from "../components/ContractDetails.vue";
+import ContractGeneral from "../components/ContractGeneral.vue";
+// import Networks from "../components/ContractDetails.vue";
 
 const store = useStore();
 store.dispatch("getContract");
 const contractId = computed(() => store.getters.contractId);
 const contract = computed(() => store.getters.contract);
-
-const tabs = {
-  General,
-  Networks,
-};
-let currentTab = ref("General");
+console.log(contract)
 </script>
 
 <template>
   <main>
     <nav>
-      <ul>
+      <!-- <ul>
         <li
           v-for="(tab, key) in tabs"
           :key="tab"
@@ -30,15 +25,13 @@ let currentTab = ref("General");
             <p>{{ key }}</p>
           </div>
         </li>
-      </ul>
+      </ul> -->
       <div class="contract-id">
         <p>{{ contractId }}</p>
       </div>
     </nav>
     <section>
-      <keep-alive>
-        <component :is="tabs[currentTab]" :contract="contract"></component>
-      </keep-alive>
+      <contract-general :contract="contract"></contract-general>
     </section>
   </main>
 </template>

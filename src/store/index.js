@@ -6,11 +6,16 @@ const store = createStore({
     return {
       contract: [],
       contractId: "f4skRMstoodrRluvl4OCY-Xo50AamgxYwBCZKzw3Uvo",
+      currentNetwork: null,
     };
   },
   mutations: {
     setContract(state, payload) {
       state.contract = payload;
+    },
+    getCurrentNetwork(state, payload) {
+      state.currentNetwork = payload;
+      localStorage.setItem('currentNetwork', JSON.stringify(payload));
     },
   },
   actions: {
@@ -27,6 +32,9 @@ const store = createStore({
     },
     contractId(state) {
       return state.contractId;
+    },
+    currentNetwork(state) {
+      return state.currentNetwork;
     },
   },
 });
