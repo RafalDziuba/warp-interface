@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 const TheContract = () => import("./layouts/TheContract.vue");
-const ContractDetails = () => import("./components/ContractDetails.vue");
+const ContractDetails = () => import("./layouts/ContractDetails.vue");
 
 const router = createRouter({
   history: createWebHistory(),
