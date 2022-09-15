@@ -13,7 +13,9 @@ const getEmitPayload = (paramValue) => {
 </script>
 
 <template>
-  <div class="wrapper">
+<div>
+  <div v-if="currentNetwork == null">You need to pick <a href="/contract">network</a> first!</div>
+  <div v-else class="wrapper">
     <Teleport to="body">
       <the-modal
         v-if="modalOpen"
@@ -110,6 +112,8 @@ const getEmitPayload = (paramValue) => {
       </div>
     </div>
   </div>
+</div>
+ 
 </template>
 
 <style lang="scss" scoped>
