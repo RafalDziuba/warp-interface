@@ -28,7 +28,7 @@ const contract = computed(() => store.getters.contract);
 @import "@/scss/mixins";
 main {
   background-color: $mainBackground;
-  width: 80%;
+  width: 60%;
   min-height: 70vh;
   margin: 0 auto;
   margin-top: 5rem;
@@ -86,7 +86,7 @@ main {
   section {
     width: 100%;
     height: 90%;
-    padding: 1rem 1.4rem;
+    padding: 2.8rem 1.4rem;
   }
 }
 </style>

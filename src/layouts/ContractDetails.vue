@@ -84,6 +84,7 @@ const getEmitPayload = (paramValue) => {
               <span>{{ param }}: </span>
               {{ key }}
             </p>
+            <img src="@/assets/edit.png" alt="edit icon" />
           </div>
         </div>
       </div>
@@ -183,6 +184,9 @@ p.list-info {
   justify-content: space-between;
   margin-top: 1rem;
   .consensus-info {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
     background-color: $secondary;
     color: white;
     padding: 1rem 2rem;
@@ -195,6 +199,12 @@ p.list-info {
     p,
     span {
       @include font-basics;
+    }
+
+    img {
+      width: 2rem;
+      height: 2rem;
+
     }
   }
 }

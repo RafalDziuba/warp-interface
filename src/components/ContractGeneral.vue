@@ -45,7 +45,7 @@ const changeRoute = (network) => {
         <ul class="networks-list">
           <li v-for="network in networks" :key="network" @click="changeRoute(network)">
             <p>{{ network.id }}</p>
-            <img src="@/assets/right.png" alt="arrow-icon" />
+            <img src="@/assets/arrow.png" alt="arrow-icon" />
           </li>
         </ul>
       </div>
@@ -61,7 +61,7 @@ div.container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 2rem;
+  margin-top: 1rem;
 
   h3 {
     font-size: 3rem;
@@ -106,6 +106,11 @@ div.container {
           }
         }
       }
+      img {
+        width: 3.2rem;
+        height: 3.2rem;
+        margin-right: 1rem;
+      }
     }
   }
   div {
@@ -113,7 +118,10 @@ div.container {
       color: $primary;
       font-weight: bold;
       font-size: 2rem;
-      margin-bottom: 1rem;
+      margin-bottom: 1rem; 
+      span {
+        font-size: 2rem;
+      }
     }
 
     p {
