@@ -8,3 +8,42 @@
   font-size: 1.6rem;
   font-weight: regular;
 }
+
+@mixin btn-basics {
+  width: 8rem;
+  height: 3rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+@mixin primary-btn{
+  @include flex-center;
+  @include btn-basics;
+  background-color: $primary;
+  color: $mainBackground;
+  border: 1px solid $primary;
+  &:hover {
+    background-color: $secondary;
+    border-color: $secondary;
+  }
+  p {
+    font-size: 1.4rem;
+  }
+} 
+
+@mixin secondary-btn {
+  @include flex-center;
+  @include btn-basics;
+  background-color: $mainBackground;
+  color: $primary;
+  border: 1px solid $primary;
+&:hover {
+  color: $mainBackground;
+  background-color: $primary;
+}
+p {
+  font-size: 1.4rem;
+}
+}

@@ -20,7 +20,6 @@ const networks = computed(() => {
 const changeRoute = (network) => {
   store.commit('getCurrentNetwork', network);
   router.push({ name: "network", params: network });
-  // console.log(network)
 };
 </script>
 

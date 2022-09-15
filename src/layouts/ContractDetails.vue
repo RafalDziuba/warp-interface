@@ -1,31 +1,28 @@
 <script setup>
-import { computed } from "vue";
-// import { useRoute } from "vue-router";
-import { useStore } from "vuex";
-const store = useStore();
-// eslint-disable-next-line
-// const props = defineProps({
-//   contract: { type: Object, default: () => ({ networks: {} }) },
-// });
-const network = computed(() => store.getters.currentNetwork);
-// import { computed } from "vue";
-// const networks = computed(() => {
-//   return props.contract?.networks;
-// });
-// const route = useRoute();
-// const logNetwork = (network) => {
-//   console.log(network);
-console.log(network.value);
-// }
-// console.log(route.params);
-// console.log(props.network)
+import { ref } from "vue";
+import TheModal from "../components/TheModal.vue";
 let currentNetwork = localStorage.getItem("currentNetwork");
+let modalOpen = ref(false);
 let specificNetwork = JSON.parse(currentNetwork);
-console.log(specificNetwork);
+let paramKey = ref(null);
+let paramContent = ref(null);
+const getEmitPayload = (paramValue) => {
+  alert(`PUT request with value: ${paramValue}`);
+  modalOpen.value = false;
+};
 </script>
 
 <template>
   <div class="wrapper">
+    <Teleport to="body">
+      <the-modal
+        v-if="modalOpen"
+        @closeModal="modalOpen = false"
+        @confirmAction="getEmitPayload"
+        :paramContent="paramContent"
+        :paramKey="paramKey"
+      ></the-modal>
+    </Teleport>
     <div class="header">
       <h1>{{ specificNetwork.name }}</h1>
       <p class="info-text">{{ specificNetwork.desc }}</p>
@@ -39,7 +36,10 @@ console.log(specificNetwork);
         <span class="info-span">Owner:</span>
         <p class="info-text">{{ specificNetwork.owner }}</p>
       </div>
-      <div v-if="Object.keys(specificNetwork.connectedNodes).length > 0" class="basic-info">
+      <div
+        v-if="Object.keys(specificNetwork.connectedNodes).length > 0"
+        class="basic-info"
+      >
         <span class="info-span">Connected nodes:</span>
         <details v-for="node in specificNetwork.connectedNodes" :key="node">
           <summary>
@@ -70,36 +70,44 @@ console.log(specificNetwork);
       <div class="basic-info">
         <span class="info-span">Consensus params:</span>
         <div class="consensus-wrapper">
-          <div class="consensus-info">
+          <div
+            class="consensus-info"
+            v-for="(key, param) in specificNetwork.consensusParams"
+            :key="key"
+            @click="
+              paramKey = key;
+              paramContent = param;
+              modalOpen = true;
+            "
+          >
             <p>
-              <span>Decision threshold:</span>
-              {{ specificNetwork.consensusParams.decisionThreshold }}
-            </p>
-          </div>
-          <div class="consensus-info">
-            <p>
-              <span>Quorum size:</span>
-              {{ specificNetwork.consensusParams.quorumSize }}
-            </p>
-          </div>
-          <div class="consensus-info">
-            <p>
-              <span>Sample size:</span>
-              {{ specificNetwork.consensusParams.sampleSize }}
+              <span>{{ param }}: </span>
+              {{ key }}
             </p>
           </div>
         </div>
       </div>
       <div class="basic-info" v-if="specificNetwork.contractGroups.length > 0">
         <span class="info-span">Contract groups:</span>
-        <p class="info-text" v-for="(group, index) in specificNetwork.contractGroups" :key="index">{{index + 1}}: {{ group }}</p>
+        <p
+          class="info-text"
+          v-for="(group, index) in specificNetwork.contractGroups"
+          :key="index"
+        >
+          {{ index + 1 }}: {{ group }}
+        </p>
       </div>
       <div class="basic-info" v-if="specificNetwork.contracts.length > 0">
         <span class="info-span">Contracts:</span>
-        <p class="info-text" v-for="(contract, index) in specificNetwork.contracts" :key="index">{{index + 1}}: {{ group }}</p>
+        <p
+          class="info-text"
+          v-for="(contract, index) in specificNetwork.contracts"
+          :key="index"
+        >
+          {{ index + 1 }}: {{ group }}
+        </p>
       </div>
     </div>
- 
   </div>
 </template>
 
@@ -179,7 +187,7 @@ p.list-info {
     color: white;
     padding: 1rem 2rem;
     border-radius: 0.5rem;
-    transition: background .2s ease;
+    transition: background 0.2s ease;
     &:hover {
       background-color: $primary;
     }

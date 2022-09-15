@@ -2,30 +2,17 @@
 import { computed } from "vue";
 import { useStore } from "vuex";
 import ContractGeneral from "../components/ContractGeneral.vue";
-// import Networks from "../components/ContractDetails.vue";
 
 const store = useStore();
 store.dispatch("getContract");
 const contractId = computed(() => store.getters.contractId);
 const contract = computed(() => store.getters.contract);
-console.log(contract)
+
 </script>
 
 <template>
   <main>
     <nav>
-      <!-- <ul>
-        <li
-          v-for="(tab, key) in tabs"
-          :key="tab"
-          @click="currentTab = key"
-          :class="{ activeTab: currentTab === key }"
-        >
-          <div>
-            <p>{{ key }}</p>
-          </div>
-        </li>
-      </ul> -->
       <div class="contract-id">
         <p>{{ contractId }}</p>
       </div>

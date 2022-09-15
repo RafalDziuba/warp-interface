@@ -1,15 +1,3 @@
-<script setup>
-// import TheContract from "./layouts/TheContract.vue";
-// import {  onMounted } from "vue";
-// import { useStore } from "vuex";
-// import { computed } from "vue";
-
-// const store = useStore();
-// store.dispatch("getContract");
-// const contract = computed(() => store.getters.contract);
-// console.log(contract.value)
-
-</script>
 
 <template>
   <router-view></router-view>
